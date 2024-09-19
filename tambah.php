@@ -1,0 +1,68 @@
+<?php
+    include "koneksi.php";
+
+    if(isset($_POST['btnSimpan']))
+    {
+        $NIS = $_POST['NIS'];
+        $No_Kartu = $_POST['No_Kartu'];
+        $Nama_Lengkap = $_POST['Nama_Lengkap'];
+
+        $Simpan = mysqli_query($konek, "insert into siswa(NIS, No_Kartu, Nama_Lengkap)values('$NIS', '$No_Kartu', '$Nama_Lengkap')");
+    
+        if($Simpan) {
+            echo "
+                <script>
+                    alert('Tersimpan');
+                    location.replace('datasiswa.php');
+                </script>
+            ";
+        }
+        else {
+            echo "
+                <script>
+                    alert('Gagal Tersimpan');
+                    location.replace('datasiswa.php');
+                </script>
+            ";
+        }
+    }
+    mysqli_query($konek, "delete from testrfid");
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <?php include "header.php"; ?>
+    <title>Tambah Data Siswa</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#No_Kartu").load("nokartu.PHP")
+        }, 0);
+    </script>
+
+</head>
+<body>
+    <?php include "menu.php"; ?>
+    <div class="container-fluid">
+        <h3> Tambah Data Siswa </h3>
+
+        <form method="POST">
+            <div id="No_Kartu"></div>
+
+            <div class="form-group">
+                <label>NIS</label>
+                <input type="text" name="NIS" id="NIS" placeholder="NIS Siswa" class="form-control" style="width: 200px">
+            </div>    
+
+            <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input type="text" name="Nama_Lengkap" id="Nama Lengkap" placeholder="Nama Lengkap Siswa" class="form-control" style="width: 200px">
+            </div>
+            
+            <button class="btn btn-primary" name="btnSimpan" id=""btnSimpan>Simpan
+            </button>
+        </form>
+    </div>
+    <?php include "footer.php"; ?>
+</body>
+</html>
