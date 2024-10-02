@@ -7,7 +7,7 @@
         $No_Kartu = $_POST['No_Kartu'];
         $Nama_Lengkap = $_POST['Nama_Lengkap'];
 
-        $Simpan = mysqli_query($konek, "insert into siswa(NIS, No_Kartu, Nama_Lengkap)values('$NIS', '$No_Kartu', '$Nama_Lengkap')");
+        $Simpan = mysqli_query( $konek, "insert into siswa(NIS, No_Kartu, Nama_Lengkap)values('$NIS', '$No_Kartu', '$Nama_Lengkap')");
     
         if($Simpan) {
             echo "
@@ -26,7 +26,7 @@
             ";
         }
     }
-    mysqli_query($konek, "delete from testrfid");
+    
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +36,7 @@
     <title>Tambah Data Siswa</title>
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#No_Kartu").load("nokartu.PHP")
+            $("#No_Kartu").load("nokartu.php")
         }, 0);
     </script>
 
@@ -59,7 +59,7 @@
                 <input type="text" name="Nama_Lengkap" id="Nama Lengkap" placeholder="Nama Lengkap Siswa" class="form-control" style="width: 200px">
             </div>
             
-            <button class="btn btn-primary" name="btnSimpan" id=""btnSimpan>Simpan
+            <button class="btn btn-primary" name="btnSimpan" id="btnSimpan">Simpan
             </button>
         </form>
     </div>

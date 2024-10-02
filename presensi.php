@@ -1,3 +1,39 @@
+<?php
+    include "koneksi.php";
+    
+    if (isset($_POST['btnExport'])) {
+        date_default_timezone_set('Asia/Jakarta');
+        $Tanggal = date('Y-m-d');
+    
+        // Fetch data from your database or other source
+        $query = "select * from rekap where Tanggal='$Tanggal'";
+        $result = mysqli_query($konek, $query);
+    
+        // Create an array of arrays to store the data
+        $results = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $results[] = $row;
+        }
+    
+        // Generate CSV file
+        $filename = 'Presensi_12f4' . $Tanggal . '.csv';
+        header("Content-type: text/csv");
+        header("Content-Disposition: attachment; filename=$filename");
+        $output = fopen("php://output", "w");
+    
+        // Write header row
+        $header = array("Nama_Lengkap", "Tanggal", "Jam_Masuk", "Jam_Istirahat", "Jam_Kembali", "Jam_Pulang");
+        fputcsv($output, $header);
+    
+        // Write data rows
+        foreach ($results as $row) {
+            fputcsv($output, $row);
+        }
+    }
+
+    
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +64,7 @@
                     date_default_timezone_set('Asia/Jakarta');
                     $Tanggal = date('Y-m-d');
 
-                    $SQL = mysqli_query($konek, "select b.Nama_Lengkap, a.Tanggal, a.Jam_Masuk, a.Jam_Istirahat, a.Jam_Kembali, a.Jam_Pulang from rekap a inner join siswa b where a.No_Kartu = b.No_Kartu and a.Tanggal='$Tanggal'");
+                    $SQL = mysqli_query($konek, "select b.Nama_Lengkap, a.Tanggal, a.Jam_Masuk, a.Jam_Istirahat, a.Jam_Kembali, a.Jam_Pulang from rekap a join siswa b where a.No_Kartu = b.No_Kartu and a.Tanggal='$Tanggal'");
 
                     $no = 0;
                     while($data = mysqli_fetch_array($SQL))
@@ -48,6 +84,9 @@
             </tbody>
         </table>
     </div>
+
+    <button class="btn btn-primary" name="btnExport" id="btnExport">Export
+            </button>
 
     <?php include "footer.php"; ?>
 </body>
