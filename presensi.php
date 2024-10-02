@@ -83,11 +83,10 @@
                 <?php } ?>
             </tbody>
         </table>
+        <button class="btn btn-primary" name="btnExport" id="btnExport" style="background-color: midnightblue; color: white">Export</button>
     </div>
 
-    <button class="btn btn-primary" name="btnExport" id="btnExport">Export
-            </button>
-
+    
     <?php include "footer.php"; ?>
 </body>
 </html>

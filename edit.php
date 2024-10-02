@@ -61,8 +61,7 @@
                 <input type="text" name="Nama_Lengkap" id="Nama Lengkap" placeholder="Nama Lengkap Siswa" class="form-control" style="width: 200px" value="<?php echo $Hasil['Nama_Lengkap'];?>">
             </div>
             
-            <button class="btn btn-primary" name="btnSimpan" id=""btnSimpan>Simpan
-            </button>
+            <button class="btn btn-primary" name="btnSimpan" id="btnSimpan" style="background-color: midnightblue; color: white">Simpan</button>
         </form>
     </div>
     <?php include "footer.php"; ?>

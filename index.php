@@ -10,7 +10,7 @@
         <h1>
             Selamat Datang <br>
             SISTEM PRESENSI SISWA XII-F4 <br>
-            Version : 0.1
+            Version : 0.2.1
         </h1>
     </div>
     <?php include "footer.php"; ?>

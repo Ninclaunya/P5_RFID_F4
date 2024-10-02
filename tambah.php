@@ -25,6 +25,7 @@
                 </script>
             ";
         }
+        mysqli_query($konek, "delete from testrfid");
     }
     
 ?>
@@ -59,7 +60,7 @@
                 <input type="text" name="Nama_Lengkap" id="Nama Lengkap" placeholder="Nama Lengkap Siswa" class="form-control" style="width: 200px">
             </div>
             
-            <button class="btn btn-primary" name="btnSimpan" id="btnSimpan">Simpan
+            <button class="btn btn-primary" name="btnSimpan" id="btnSimpan" style="background-color: midnightblue; color: white">Simpan
             </button>
         </form>
     </div>
