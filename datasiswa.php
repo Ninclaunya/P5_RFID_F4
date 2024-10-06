@@ -22,7 +22,7 @@
             <?php
                 include "koneksi.php";
 
-                $sql = mysqli_query($konek, "select * from siswa");
+                $sql = mysqli_query($konek, "select * from siswa order by Nama_Lengkap asc");
                 $no = 0;
                 while($data = mysqli_fetch_array($sql))
                 {

@@ -6,29 +6,30 @@
     $Cari = mysqli_query($konek, "select * from siswa where ID='$ID'");
     $Hasil = mysqli_fetch_array($Cari);
 
-    if(isset($_POST['btnSimpan']))
-    {
+    if (isset($_POST['btnSimpan'])) {
         $NIS = $_POST['NIS'];
         $No_Kartu = $_POST['No_Kartu'];
         $Nama_Lengkap = $_POST['Nama_Lengkap'];
-
-        $Simpan = mysqli_query($konek, "update siswa set NIS= '$NIS', No_Kartu='$No_Kartu', Nama_Lengkap='$Nama_Lengkap' where ID='$ID'");
     
-        if($Simpan) {
-            echo "
-                <script>
+        if (empty($NIS) || empty($No_Kartu) || empty($Nama_Lengkap)) {
+            echo "<script>
+                alert('Please fill in all required fields.');
+                location.replace('datasiswa.php');
+            </script>";
+        } else {
+            $Simpan = mysqli_query($konek, "INSERT INTO siswa(NIS, No_Kartu, Nama_Lengkap) VALUES('$NIS', '$No_Kartu', '$Nama_Lengkap')");
+    
+            if ($Simpan) {
+                echo "<script>
                     alert('Tersimpan');
                     location.replace('datasiswa.php');
-                </script>
-            ";
-        }
-        else {
-            echo "
-                <script>
+                </script>";
+            } else {
+                echo "<script>
                     alert('Gagal Tersimpan');
                     location.replace('datasiswa.php');
-                </script>
-            ";
+                </script>";
+            }
         }
     }
 ?>
@@ -45,15 +46,15 @@
         <h3> Edit Data Siswa </h3>
 
         <form method="POST">
-            <div class="form-group">
-                <label>NIS</label>
-                <input type="text" name="NIS" id="NIS" placeholder="NIS Siswa" class="form-control" style="width: 200px" value="<?php echo $Hasil['NIS'];?>">
-            </div>
-            
             <div>
             <class="form-group">
                 <label>No. Kartu</label>
                 <input type="text" name="No_Kartu" id="No. Kartu" placeholder="No. Kartu Siswa" class="form-control" style="width: 200px" value="<?php echo $Hasil['No_Kartu'];?>">
+            </div>
+        
+            <div class="form-group">
+                <label>NIS</label>
+                <input type="text" name="NIS" id="NIS" placeholder="NIS Siswa" class="form-control" style="width: 200px" value="<?php echo $Hasil['NIS'];?>">
             </div>
 
             <div class="form-group">
