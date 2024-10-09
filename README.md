@@ -9,4 +9,6 @@ https://youtu.be/eB5nl7K5EA4?si=bvBcM1VMW5e2uSCF</br>
 Part 3
 https://www.youtube.com/watch?v=QOrPPedRbnY</br>
 </br>
-Nama2 tentunya diubah, ada bagian2 yg gk bisa ke run jadi saya ubah juga. Tp bisa ke runnya cuma kyk 50% gtu T~T
+UDH RUNNING BANG</br>
+YEYYYYY</br>
+Ya tp msh berantakan si file csvnya
