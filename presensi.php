@@ -6,7 +6,10 @@
         $Tanggal = date('Y-m-d');
     
         // Fetch data from your database or other source
-        $query = "select b.Nama_Lengkap, a.Tanggal, a.Jam_Masuk, a.Jam_Istirahat, a.Jam_Kembali, a.Jam_Pulang from rekap a join siswa b where a.No_Kartu = b.No_Kartu and a.Tanggal='$Tanggal' order by Nama_Lengkap asc";
+        $query = "select b.Nama_Lengkap, a.Tanggal, a.Jam_Masuk, a.Jam_Istirahat, a.Jam_Kembali, a.Jam_Pulang 
+                  from rekap a join siswa b 
+                  where a.No_Kartu = b.No_Kartu and a.Tanggal='$Tanggal' 
+                  order by Nama_Lengkap asc";
         $result = mysqli_query($konek, $query);
     
         // Create an array of arrays to store the data
@@ -22,22 +25,23 @@
         $output = fopen("php://output", "w");
     
         // Write header row
-        $header = array("Nama_Lengkap", "Tanggal", "Jam_Masuk", "Jam_Istirahat", "Jam_Kembali", "Jam_Pulang");
+        $header = array("Nama Lengkap", "Tanggal", "Jam Masuk", "Jam Istirahat", "Jam Kembali", "Jam Pulang"); 
         fputcsv($output, $header);
     
         // Write data rows
         foreach ($results as $row) {
-            fputcsv($output, $row);
+            // Format Jam_Masuk, Jam_Istirahat, Jam_Kembali, Jam_Pulang 
+            $row['Jam_Masuk'] = date('H:i:s', strtotime($row['Jam_Masuk'])); 
+            $row['Jam_Istirahat'] = date('H:i:s', strtotime($row['Jam_Istirahat']));
+            $row['Jam_Kembali'] = date('H:i:s', strtotime($row['Jam_Kembali']));
+            $row['Jam_Pulang'] = date('H:i:s', strtotime($row['Jam_Pulang']));
+    
+            fputcsv($output, $row); 
         }
-
-        foreach ($results as $row) {
-            $delimiter = ",";
-            $columns = explode($delimiter, implode(",", $row));
-        
-            // Now you have an array of columns for each row
-            print_r($columns);
-        }
-    }   
+    
+        fclose($output); 
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>

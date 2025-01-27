@@ -5,27 +5,32 @@
     $data = mysqli_fetch_array($SQL);
     $Mode_Presensi = $data['mode'];
     
-    $Waktu_Masuk = strtotime('05:00:00');
-    $Waktu_Istirahat = strtotime('09:30:00');
+    date_default_timezone_set('Asia/Jakarta');
+    
+    $Tanggal = date('Y-m-d');
+    $Jam = date('H:i:s');
+
+    $Waktu_Masuk = strtotime('12:00:00');
+    $Waktu_Istirahat = strtotime('15:15:00');
     $Waktu_Kembali = strtotime('10:10:00');
     $Waktu_Pulang = strtotime('12:00:00');
     $Waktu_Sekarang = time();
     
     $mode ="";
 
-    if ($Waktu_Sekarang >= $Waktu_Masuk && $Mode_Presensi = 4){
+    if ($Waktu_Sekarang >= $Waktu_Masuk && $Waktu_Sekarang  <= $Waktu_Istirahat && $Mode_Presensi == 4){
         $update_sql = "update status set mode=1";
         mysqli_query($konek, $update_sql);
     }
-    else if ($Waktu_Sekarang  >= $Waktu_Istirahat && $Mode_Presensi = 1){
+    else if ($Waktu_Sekarang  >= $Waktu_Istirahat && $Waktu_Sekarang  <= $Waktu_Kembali && $Mode_Presensi == 1){
         $update_sql = "update status set mode=2";
         mysqli_query($konek, $update_sql);
     }
-    else if ($Waktu_Sekarang  >= $Waktu_Kembali && $Mode_Presensi = 2){
+    else if ($Waktu_Sekarang  >= $Waktu_Kembali && $Waktu_Sekarang  >= $Waktu_Pulang && $Mode_Presensi == 2){
         $update_sql = "update status set mode=3";
         mysqli_query($konek, $update_sql);
     }
-    else if ($Waktu_Sekarang  >= $Waktu_Pulang && $Mode_Presensi = 3){
+    else if ($Waktu_Sekarang  >= $Waktu_Pulang && $Mode_Presensi == 3){
         $update_sql = "update status set mode=4";
         mysqli_query($konek, $update_sql);
     }
@@ -63,10 +68,6 @@
         else{
             $Data_Siswa = mysqli_fetch_array($Cari_Siswa);
             $Nama_Lengkap = $Data_Siswa['Nama_Lengkap'];
-
-            date_default_timezone_set('Asia/Jakarta');
-            $Tanggal = date('Y-m-d');
-            $Jam = date('H:i:s');
 
             $Cari_Presensi = mysqli_query($konek, "select * from rekap where No_Kartu='$No_Kartu' and Tanggal='$Tanggal'");
 
