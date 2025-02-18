@@ -23,7 +23,7 @@ if (isset($_POST['btnSimpan'])) {
         } else {
             echo "<script>
                 alert('Gagal Tersimpan');
-                location.replace('tambah.php');
+                location.replace('datasiswa.php');
             </script>";
         }
     }
@@ -48,38 +48,34 @@ if (isset($_POST['btnSimpan'])) {
             margin: 0;
             padding: 0;
             background-color: rgba(82, 192, 152, 1);
-            
+            min-height: 100vh; /* Ensure body is full viewport height */
+            display: flex;
+            flex-direction: column;
         }
-        .tambah {
+
+        .upbanyak {
             font-family: "Pixelify Sans", serif;
-            min-height: 650px;
-            padding-top: 60px;
+            flex-grow: 1; /* Allow upbanyak to expand to fill available space */
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
             background-color: rgba(82, 192, 152, 1);
             background-image: url(design/laptop_putih.png);
             background-size: 950px;
             background-repeat: no-repeat;
             background-position: center;
-            
         }
 
-        .isi{
+        .isi {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 500px;
+            width: 500px; /* Or a percentage for responsiveness */
             text-align: center;
             padding: 20px;
         }
 
-        .isi form{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 500px;
-            text-align: center;
-            border-radius: 20px;
-        }
-        
         .isi h3{
             font-style: bold;
             font-size: 200%;
@@ -90,8 +86,9 @@ if (isset($_POST['btnSimpan'])) {
         .isi input{
             display: block;
             text-align: center;
+            align-content: center;
             font-size: 100%;
-            width: 80%;
+            width: 100%;
             height: 40px;
             border: 2px solid rgb(209, 211, 212);
             border-top-left-radius: 20px;
@@ -123,36 +120,21 @@ if (isset($_POST['btnSimpan'])) {
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        .isi button:hover {
-            background-color:rgb(249, 238, 39)9; 
-        }
-
-        .isi button:active {
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); 
-            transform: translateY(1px); 
-        }
-
     </style>
 
 </head>
 <body>
     <?php include "menu.php"; ?>
 
-    <div class="container-fluid tambah">
-        <div class="container-fluid isi">
-            <form method="POST">
-                <h3> Tambah Data Siswa </h3>
-                <label>Nama Lengkap</label>
-                <input type="text" name="Nama_Lengkap" id="Nama Lengkap" placeholder="Nama Lengkap Siswa" class="form-control" required style="width: 500px">
-                <label>NIS</label>
-                <input type="text" name="NIS" id="NIS" placeholder="NIS Siswa" class="form-control" required style="width: 500px">
-                <label>Kelas</label>
-                <input type="text" name="Kelas" id="Kelas" placeholder="Kelas" class="form-control" style="width: 500px">
-                <div id="No_Kartu"></div>
-                <button class="btn btn-primary" name="btnSimpan" id="btnSimpan">Simpan</button>
+    <div class="container-fluid upbanyak">
+        <div class="csv-upload isi">
+            <h3>Tambah Data Massal</h3>
+            <form action="upload_csv.php" method="post" enctype="multipart/form-data">
+                <label for="csvFile">Pilih File CSV:</label>
+                <input type="file" id="csvFile" name="csvFile" accept=".csv">
+                <button type="submit" name="upload">Upload</button>
             </form>
         </div>
-        
     </div>
 </body>
 </html>
