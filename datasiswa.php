@@ -3,14 +3,51 @@
 <head>
     <?php include "header.php"; ?>
     <title>Data Siswa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+        html, body{
+            background-color: rgba(82, 192, 152, 1);
+        }
+
+        h3{
+            text-align: center;
+            font-style: bold;
+            font-size: 250%;
+            padding-bottom: 10px;
+        }
+    
+        .tabel-data{
+            background-color: rgba(82, 192, 152, 1);
+            font-family: "Pixelify Sans", serif;
+        }
+
+        .isi-tabel{
+            text-shadow: none;
+        }
+
+        table {
+            border-collapse: collapse; 
+            width: 100%;
+        }
+
+        th {
+            background-color: rgb(249, 228, 39);
+            color: black;
+        }
+
+        table thead, tbody, th, td{
+            border: 3px solid black;
+        }
+
+    </style>
 </head>
 <body>
     <?php include "menu.php"; ?>
-    <div class="container-fluid">
+    <div class="container-fluid tabel-data">
         <h3>Data Siswa</h3>
-        <table class="table table-bordered">
+        <table class="table table-bordered isi-tabel">
             <thead>
-                <tr style="background-color: midnightblue; color: white;">
+                <tr style="background-color: rgb(249, 228, 39); color: black;">
                     <th style="width: 10px; text-align: center">No.</th>
                     <th style="width: 200px; text-align: center">NIS</th>
                     <th style="width: 200px; text-align: center">No. Kartu</th>
@@ -28,7 +65,7 @@
                 {
                     $no++;
             ?>
-            <tr>
+            <tr style="background-color: rgba(255,255,255,1); color: black;">
                 <td> <?php echo $no; ?> </td>
                 <td> <?php echo $data['NIS']; ?> </td>
                 <td> <?php echo $data['No_Kartu']; ?> </td>
@@ -41,8 +78,8 @@
         </tbody>
         </table>
 
-        <a href="tambah.php"><button class="btn btn-primaru" style="background-color: midnightblue; color: white">Tambah Data Siswa</button></a>
+        <a href="tambah.php"><button class="btn btn-primary" style="background-color:  rgb(249, 228, 39); color: black;">Tambah Data Siswa</button></a>
     </div>
-    <?php include "footer.php"; ?>
+
 </body>
 </html>

@@ -11,9 +11,9 @@
     $Jam = date('H:i:s');
 
     $Waktu_Masuk = strtotime('12:00:00');
-    $Waktu_Istirahat = strtotime('15:15:00');
-    $Waktu_Kembali = strtotime('10:10:00');
-    $Waktu_Pulang = strtotime('12:00:00');
+    $Waktu_Istirahat = strtotime('15:00:00');
+    $Waktu_Kembali = strtotime('15:45:00');
+    $Waktu_Pulang = strtotime('17:00:00');
     $Waktu_Sekarang = time();
     
     $mode ="";
@@ -26,7 +26,7 @@
         $update_sql = "update status set mode=2";
         mysqli_query($konek, $update_sql);
     }
-    else if ($Waktu_Sekarang  >= $Waktu_Kembali && $Waktu_Sekarang  >= $Waktu_Pulang && $Mode_Presensi == 2){
+    else if ($Waktu_Sekarang  >= $Waktu_Kembali && $Waktu_Sekarang  <= $Waktu_Pulang && $Mode_Presensi == 2){
         $update_sql = "update status set mode=3";
         mysqli_query($konek, $update_sql);
     }
@@ -49,14 +49,48 @@
     $No_Kartu = $Data_Kartu['No_Kartu'];
 
 ?>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+    html, body{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(82, 192, 152, 1);
+    }
+    .baca{
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        min-height: 617px;
+        padding-bottom: 5%;
+        background-color: rgba(82, 192, 152, 1);
+        font-family: "Pixelify Sans", serif;
+        text-align: center;
+    }
 
-<div class="container-fluid" style="text-align: center;">
-    <?php if($No_Kartu=="") { ?>    
+    .baca img{
+        background-image: url(design/loading_circle.gif);
+        background-position: center;
+        background-size: 280px;
+        background-repeat: no-repeat;
+        padding: 60px;
+    }
+
+    .baca h3{
+        font-size: 200%;
+    }
+</style>
+
+<div class="container-fluid baca">
+    <?php 
+    
+    if($No_Kartu=="") { ?>    
 
     <h3>Absen : <?php echo $mode; ?></h3>
+    <img src="design/rfid.png" style="width: 30%">
     <h3>Silahkan Tempel Kartu RFID Anda</h3>
-    <img src="images/rfid.png" style="width: 200px"> <br>
-    <img src="images/animasi2.gif">
 
     <?php } 
     else {

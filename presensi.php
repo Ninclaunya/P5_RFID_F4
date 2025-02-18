@@ -48,17 +48,54 @@
 <html>
 <head>
     <?php include "header.php"; ?>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+        html, body{
+            background-color: rgba(82, 192, 152, 1);
+        }
+
+        h3{
+            text-align: center;
+            font-style: bold;
+            font-size: 250%;
+            padding-bottom: 10px;
+        }
+    
+        .tabel-rekap{
+            background-color: rgba(82, 192, 152, 1);
+            font-family: "Pixelify Sans", serif;
+        }
+
+        .isi-tabel{
+            text-shadow: none;
+        }
+
+        table {
+            border-collapse: collapse; 
+            width: 100%;
+        }
+
+        th {
+            background-color: rgb(249, 228, 39);
+            color: black;
+        }
+
+        table thead, tbody, th, td{
+            border: 3px solid black;
+        }
+
+    </style>
 </head>
 <body>
     <?php include "menu.php"; ?>
 
-    <div class="container-fluid">
+    <div class="container-fluid tabel-rekap">
         <h3>Rekap Presensi</h3>
 
         <form method="post" action="">
-            <table class="table table-bordered">
+            <table class="table table-bordered isi-tabel">
                 <thead>
-                    <tr style="background-color: midnightblue; color: white;">
+                    <tr style="background-color: rgb(249, 228, 39); color: black;">
                         <th style="width: 10px; text-align: center">No.</th>
                         <th style="text-align: center">Nama</th>
                         <th style="text-align: center">Tanggal</th>
@@ -82,22 +119,21 @@
                     {
                         $no ++;
                     ?>
-                    <tr>
-                        <td> <?php echo $no;?> </td>
+                    <tr style="background-color: rgba(255,255,255,1); color: black;">
+                        <td style="text-align: center"> <?php echo $no;?> </td>
                         <td> <?php echo $data['Nama_Lengkap']; ?> </td>
-                        <td> <?php echo $data['Tanggal']; ?> </td>
-                        <td> <?php echo $data['Jam_Masuk']; ?> </td>
-                        <td> <?php echo $data['Jam_Istirahat']; ?> </td>
-                        <td> <?php echo $data['Jam_Kembali']; ?> </td>
-                        <td> <?php echo $data['Jam_Pulang']; ?> </td>
+                        <td style="text-align: center"> <?php echo $data['Tanggal']; ?> </td>
+                        <td style="text-align: center"> <?php echo $data['Jam_Masuk']; ?> </td>
+                        <td style="text-align: center"> <?php echo $data['Jam_Istirahat']; ?> </td>
+                        <td style="text-align: center"> <?php echo $data['Jam_Kembali']; ?> </td>
+                        <td style="text-align: center"> <?php echo $data['Jam_Pulang']; ?> </td>
                     </tr>
                     <?php } ?>
                 </tbody>
             </table>
-            <button class="btn btn-primary" name="btnExport" id="btnExport" style="background-color: midnightblue; color: white">Export</button>
+            <button class="btn btn-primary" name="btnExport" id="btnExport" style="background-color:  rgb(249, 228, 39); color: black;">Export</button>
         </form>
     </div>
 
-    <?php include "footer.php"; ?>
 </body>
 </html>

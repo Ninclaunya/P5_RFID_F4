@@ -14,13 +14,14 @@ if(isset($_POST['uname']) && isset($_POST['password'])){
 $uname = validate($_POST['uname']);
 $pass = validate($_POST['password']);
 
-if(empty($uname)){
-    header("Location: masuk.php?error=Username is required");
-    exit();
-}
-if(empty($pass)){
-    header("Location: masuk.php?error=Password is required");
-    exit();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $uname = isset($_POST['uname']) ? trim($_POST['uname']) : '';
+    $pass = isset($_POST['password']) ? trim($_POST['password']) : '';
+
+    if (empty($uname) || empty($pass)) {
+        header("Location: masuk.php?error=Please fill in all required fields.");
+        exit();
+    }
 }
 
 $SQL = "select * from users where username='$uname' and password='$pass'";
